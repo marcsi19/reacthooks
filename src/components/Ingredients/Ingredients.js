@@ -8,7 +8,17 @@ function Ingredients() {
   const [userIngredients, setUserIngredients] = useState([])
 
   const addIngredientHandler = ingredient => {
-    setUserIngredients(prevIngredeients => [...prevIngredeients, { id: Math.random().toString(), ...ingredient }])
+    fetch('https://reacthookspractice.firebaseio.com/ingredients.json', {
+      method: 'POST',
+      body: JSON.stringify(ingredient),
+      headers: { 'Content-Type': 'application/json' }
+    }).then(response => {
+      return response.json()
+    }).then(responseData => {
+      setUserIngredients(prevIngredeients => [
+        ...prevIngredeients,
+        { id: responseData.name, ...ingredient }])
+    });
   }
 
   return (
