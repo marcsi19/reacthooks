@@ -29,7 +29,7 @@ const Search = React.memo(props => {
         });
       }
     }, 500);
-    return () => { clearTimer(timer) }
+    return () => { clearTimeout(timer) }
   }, [enteredFilter, onLoadedIngredients, inputRef])
 
 
