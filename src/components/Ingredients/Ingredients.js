@@ -22,7 +22,8 @@ function Ingredients() {
   //     }
   //     setUserIngredients(loadedIngredients)
   //   });
-  // }, [])
+  // }, []) // search component fetches the data as well, no need to do it twice
+
   useEffect(() => {
     console.log('RENDERING INGREDIENTS', userIngredients);
   }, [userIngredients]);
