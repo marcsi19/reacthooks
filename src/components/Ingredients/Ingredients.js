@@ -51,6 +51,7 @@ function Ingredients() {
         { id: responseData.name, ...ingredient }])
     }).catch(error => {
       setError(error.message)
+      setIsLoading(false);
       // or setError('Something went wrong')
     });
   }
@@ -66,13 +67,13 @@ function Ingredients() {
       )
     }).catch(error => {
       setError(error.message)
+      setIsLoading(false);
       // or setError('Something went wrong')
     })
   }
 
   const clearError = () => {
     setError(null);
-    setIsLoading(false);
   }
 
   return (
