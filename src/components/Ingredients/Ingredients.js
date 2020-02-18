@@ -55,7 +55,7 @@ function Ingredients() {
   // const [error, setError] = useState()
 
   // useEffect(() => {
-  //   fetch('https://reacthookspractice.firebaseio.com/ingredients.json', {
+  //   fetch(dataStore, {
   //   }).then(response => {
   //     return response.json()
   //   }).then(responseData => {
@@ -91,7 +91,6 @@ function Ingredients() {
     sendRequest(
       // setIsLoading(true)
       dataStore,
-      // 'https://reacthookspractice.firebaseio.com/ingredients.json',
       'POST',
       JSON.stringify(ingredient),
       ingredient,
@@ -104,7 +103,6 @@ function Ingredients() {
   const removeIngredientHandler = useCallback(ingredientId => {
     sendRequest(
       `${dataStoreSub}/${ingredientId}.json`,
-      // `https://reacthookspractice.firebaseio.com/ingredients/${ingredientId}.json`,
       'DELETE',
       null,
       ingredientId,

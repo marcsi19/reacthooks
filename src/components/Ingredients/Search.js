@@ -22,7 +22,6 @@ const Search = React.memo(props => {
             : `?orderBy="title"&equalTo="${enteredFilter}"`;
         sendRequest(
           dataStore + query,
-          // 'https://reacthookspractice.firebaseio.com/ingredients.json' + query,
           'GET'
         );
       }
