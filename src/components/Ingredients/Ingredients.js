@@ -5,6 +5,7 @@ import IngredientList from './IngredientList'
 import ErrorModal from '../UI/ErrorModal'
 import Search from './Search';
 import useHttp from '../../hooks/http'
+import { dataStore, dataStoreSub } from '../../secrets'
 
 const ingredientReducer = (currentIngredients, action) => {
   switch (action.type) {
@@ -89,7 +90,8 @@ function Ingredients() {
   const addIngredientHandler = useCallback(ingredient => {
     sendRequest(
       // setIsLoading(true)
-      'https://reacthookspractice.firebaseio.com/ingredients.json',
+      dataStore,
+      // 'https://reacthookspractice.firebaseio.com/ingredients.json',
       'POST',
       JSON.stringify(ingredient),
       ingredient,
@@ -100,7 +102,10 @@ function Ingredients() {
 
 
   const removeIngredientHandler = useCallback(ingredientId => {
-    sendRequest(`https://reacthookspractice.firebaseio.com/ingredients/${ingredientId}.json`, 'DELETE',
+    sendRequest(
+      `${dataStoreSub}/${ingredientId}.json`,
+      // `https://reacthookspractice.firebaseio.com/ingredients/${ingredientId}.json`,
+      'DELETE',
       null,
       ingredientId,
       'REMOVE_INGREDIENT'
@@ -127,7 +132,7 @@ function Ingredients() {
       <IngredientForm onAddIngredient={addIngredientHandler} loading={isLoading} />
 
       <section>
-        <Search onLoadedIngredients={filteredIngredientHandler} />
+        <Search onLoadIngredients={filteredIngredientHandler} />
         {/* <IngredientList ingredients={userIngredients} onRemoveItem={removeIngredientHandler} /> */}
         {ingredientList}
       </section>
